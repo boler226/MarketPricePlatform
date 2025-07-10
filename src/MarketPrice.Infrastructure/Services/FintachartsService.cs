@@ -35,8 +35,10 @@ namespace MarketPrice.Infrastructure.Services
             response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();
+            using var jsonDoc = JsonDocument.Parse(json);
+            var dataElement = jsonDoc.RootElement.GetProperty("data");
 
-            return JsonSerializer.Deserialize<List<BarDto>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
+            return JsonSerializer.Deserialize<List<BarDto>>(dataElement.GetRawText(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
         }
     }
 }
