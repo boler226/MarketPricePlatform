@@ -1,0 +1,26 @@
+# Ignore .NET build folders
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore Visual Studio folder
+.vs/
+
+# Ignore build results
+*.exe
+*.dll
+*.pdb
+*.cache
+*.log
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.ncb
+*.swp
+*~
