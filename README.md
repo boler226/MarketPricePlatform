@@ -7,7 +7,7 @@ Docker Desktop
 Git
 
 
-git clone https://github.com/your-username/MarketPricePlatform.git
+git clone https://github.com/boler226/MarketPricePlatform
 cd MarketPricePlatform
 
 В appsettings змініть налаштування бази данних на вашу актуальну і робочу
