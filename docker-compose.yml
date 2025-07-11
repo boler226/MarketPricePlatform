@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      POSTGRES_DB: MarketPrice
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: boler2020
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  market-price:
+    container_name: market-price
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=MarketPrice;Username=postgres;Password=boler2020
+    ports:
+      - "5000:8080"
+
+volumes:
+  pgdata:
