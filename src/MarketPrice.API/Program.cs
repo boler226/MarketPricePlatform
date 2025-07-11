@@ -36,7 +36,15 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "MarketPrice API V1");
+        c.RoutePrefix = "";
+    });
+}
+
+using (var scope = app.Services.CreateScope()) {
+    var dbContext = scope.ServiceProvider.GetRequiredService<AssetsDbContext>();
+    dbContext.Database.Migrate();
 }
 
 app.UseHttpsRedirection();
